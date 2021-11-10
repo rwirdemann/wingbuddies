@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spot: MyString
+  when: 2021-11-10 21:55:04
+
+two:
+  spot: MyString
+  when: 2021-11-10 21:55:04

@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <p class="title">
+            Wingbuddies
+          </p>
+          <p class="subtitle">
+            What a time to be alive
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section has-background-light">
+      <%= yield %>
+    </section>
   </body>
 </html>
