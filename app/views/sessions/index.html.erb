@@ -26,10 +26,14 @@
     </div>
     <div class="column is-one-third">
       <%= form_with model: @session do |form| %>
-        <div class="field">
-          <label class="label">Neue Session einstellen</label>
-          <div class="select">
-            <%= form.collection_select :spot_id, @spots, :id, :name %>
+        <div class="field has-addons">
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :spot_id, @spots, :id, :name %>
+            </div>
+          </div>
+          <div class="control">
+            <input type="text" class="input" placeholder="Neuer Spot">
           </div>
         </div>
         <div class="field">
@@ -37,7 +41,16 @@
             <%= form.date_field :day, :class => 'input' %>
           </div>
         </div>
-          <%= form.submit 'Go, Wing It!', :class => 'button is-secondary' %>
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <div class="select is-fullwidth">
+              <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
+            </div>
+          </div>
+          <div class="control">
+            <%= form.submit 'Go', :class => 'button is-primary' %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
