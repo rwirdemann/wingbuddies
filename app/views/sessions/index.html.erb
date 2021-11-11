@@ -10,7 +10,7 @@
           </figure>
           <div class="media-content">
             <div class="content">
-              <h3 class="subtitle">Sontag, 27. Juli 2021, <%= session.spot %></h3>
+              <h3 class="subtitle"><%= session.day.strftime("%A, %e. %m. %Y") %>, <%= session.spot %></h3>
               <div class="columns">
                 <div class="column is-three-fifths">
                   <p>Surfer: Ralf, Astrid, Kalle</p>
@@ -25,22 +25,31 @@
       <% end %>
     </div>
     <div class="column is-one-third">
-      <form action="/submit" method="post">
+      <%= form_with model: @session do |form| %>
         <p class="subtitle">
           Neue Session...
         </p>
         <div class="field">
           <div class="control">
-            <input class="input" type="text" name="headline" placeholder="Wo gehts hin?" required>
+            <%= form.text_field :spot, :class => 'input', :placeholder => 'Wo gehts hin?', :required => true %>
           </div>
         </div>
         <div class="field">
           <div class="control">
-            <input class="input" name="when" type="date">
+            <%= form.date_field :day, :class => 'input', :required => true %>
           </div>
         </div>
-        <input class="button" type="submit" value="Einstellen">
-      </form>
+        <div class="field">
+          <div class="select">
+            <select>
+              <option>Vormittags</option>
+              <option>Nachmittags</option>
+              <option>Abends</option>
+            </select>
+          </div>
+        </div>
+        <%= form.submit 'Go, Wing It!', :class => 'button' %>
+      <% end %>
     </div>
   </div>
 </div>

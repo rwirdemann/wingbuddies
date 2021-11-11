@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_205504) do
+ActiveRecord::Schema.define(version: 2021_11_11_130642) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "spot"
-    t.datetime "when"
+    t.date "day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
