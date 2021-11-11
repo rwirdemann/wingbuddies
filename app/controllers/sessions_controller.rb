@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def index
     @sessions = Session.order(:day)
-    @session = Session.new
+    @spots = Spot.order(:name)
+    @session = Session.new(:day => Date.today)
   end
 
   def create
@@ -15,6 +16,6 @@ class SessionsController < ApplicationController
 
   private
     def session_params
-      params.require(:session).permit(:spot, :day)
+      params.require(:session).permit(:spot_id, :day)
     end
 end

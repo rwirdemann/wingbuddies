@@ -10,7 +10,7 @@
           </figure>
           <div class="media-content">
             <div class="content">
-              <h3 class="subtitle"><%= session.day.strftime("%A, %e. %m. %Y") %>, <%= session.spot %></h3>
+              <h3 class="subtitle"><%= session.day.strftime("%A, %e. %m. %Y") %>, <%= session.spot.name %></h3>
               <div class="columns">
                 <div class="column is-three-fifths">
                   <p>Surfer: Ralf, Astrid, Kalle</p>
@@ -26,29 +26,18 @@
     </div>
     <div class="column is-one-third">
       <%= form_with model: @session do |form| %>
-        <p class="subtitle">
-          Neue Session...
-        </p>
         <div class="field">
-          <div class="control">
-            <%= form.text_field :spot, :class => 'input', :placeholder => 'Wo gehts hin?', :required => true %>
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <%= form.date_field :day, :class => 'input', :required => true %>
-          </div>
-        </div>
-        <div class="field">
+          <label class="label">Neue Session einstellen</label>
           <div class="select">
-            <select>
-              <option>Vormittags</option>
-              <option>Nachmittags</option>
-              <option>Abends</option>
-            </select>
+            <%= form.collection_select :spot_id, @spots, :id, :name %>
           </div>
         </div>
-        <%= form.submit 'Go, Wing It!', :class => 'button' %>
+        <div class="field">
+          <div class="control">
+            <%= form.date_field :day, :class => 'input' %>
+          </div>
+        </div>
+          <%= form.submit 'Go, Wing It!', :class => 'button is-secondary' %>
       <% end %>
     </div>
   </div>
