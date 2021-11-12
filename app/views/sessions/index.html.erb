@@ -15,40 +15,63 @@
             </div>
             <div><small><a href="#0">Join</a> &middot; <a href="https://www.windfinder.com/weatherforecast/heiligenhafen" target="_blank">Windfinder</a></small></div>
           </div>
-          <div class="media-right">
-            <button class="delete"></button>
-          </div>
+          <% if current_user %>
+            <div class="media-right">
+              <button class="delete"></button>
+            </div>
+          <% end %>
         </article>
       <% end %>
     </div>
     <div class="column is-one-third">
-      <h2 class="subtitle has-text-weight-bold">Neue Session</h2>
-      <%= form_with model: @session do |form| %>
-        <div class="field has-addons">
-          <div class="control">
-            <div class="select">
-              <%= form.collection_select :spot_id, @spots, :id, :name %>
+      <% if current_user %>
+        <h2 class="subtitle has-text-weight-bold">Neue Session</h2>
+        <%= form_with model: @session do |form| %>
+          <div class="field has-addons">
+            <div class="control">
+              <div class="select">
+                <%= form.collection_select :spot_id, @spots, :id, :name %>
+              </div>
+            </div>
+            <div class="control">
+              <input type="text" class="input" placeholder="Neuer Spot">
             </div>
           </div>
-          <div class="control">
-            <input type="text" class="input" placeholder="Neuer Spot">
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <%= form.date_field :day, :class => 'input' %>
-          </div>
-        </div>
-        <div class="field is-grouped">
-          <div class="control is-expanded">
-            <div class="select">
-              <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
+          <div class="field">
+            <div class="control">
+              <%= form.date_field :day, :class => 'input' %>
             </div>
           </div>
-          <div class="control">
-            <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+          <div class="field is-grouped">
+            <div class="control is-expanded">
+              <div class="select">
+                <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
+              </div>
+            </div>
+            <div class="control">
+              <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+            </div>
           </div>
-        </div>
+          <div class="field">
+            <div class="control">
+              <a class="is-right" href="/logout">Logout (<%= current_user["name"] %>)</a>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h2 class="subtitle has-text-weight-bold">Melde Dich an</h2>
+        <%= form_with model: @user do |form| %>
+          <div class="field">
+            <div class="control">
+              <%= form.text_field :name, :class => 'input', :placeholder => 'Dein Nickname', :autofocus => true%>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control buttons is-right">
+              <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

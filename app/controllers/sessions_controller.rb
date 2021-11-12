@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
     @sessions = Session.order(:day)
     @spots = Spot.order(:name)
     @session = Session.new(:day => Date.today)
+    @user = User.new
   end
 
   def create
