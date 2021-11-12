@@ -10,12 +10,12 @@
           </figure>
           <div class="media-content">
             <div class="content">
-              <div><strong><%= session.spot.name %></strong> <small>@ralf</small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time></small></div>
-              <p>Surfer: Ralf, Astrid, Kalle</p>
+              <div><strong><%= session.spot.name %></strong> <small>@<%= session.username %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time></small></div>
+              <small>Joined by Astrid, Kalle</small>
             </div>
             <div>
               <small>
-                <% if current_user %>
+                <% if current_user and current_user != session.username %>
                   <a href="#0">Join</a> &middot; 
                 <% end %>
                 <a href="https://www.windfinder.com/weatherforecast/heiligenhafen" target="_blank">Windfinder</a>
@@ -61,7 +61,7 @@
           </div>
           <div class="field">
             <div class="control">
-              <a class="is-right" href="/logout">Logout (<%= current_user["name"] %>)</a>
+              <a class="is-right" href="/logout">Logout (<%= current_user %>)</a>
             </div>
           </div>
         <% end %>

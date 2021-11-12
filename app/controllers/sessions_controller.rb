@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
 
   def create
     @session = Session.new(session_params)
-    puts @session
-
+    @session.username = current_user
     if @session.save
       redirect_to sessions_path
     end
