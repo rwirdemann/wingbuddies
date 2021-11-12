@@ -2,24 +2,21 @@
   <div class="columns">
     <div class="column">
       <% @sessions.each do |session| %>
-        <article class="media notification is-info">
+        <article class="media">
           <figure class="media-left">
-            <span class="icon is-medium">
-              <i class="fab fa-2x fa-css3-alt"></i>
-            </span>
+            <div class="image is-64x64">
+              <%= image_tag 'heiligenhafen-64x64.png' %>
+            </div>
           </figure>
           <div class="media-content">
             <div class="content">
-              <h3 class="subtitle"><%= session.day.strftime("%A, %e. %m. %Y") %>, <%= session.spot.name %></h3>
-              <div class="columns">
-                <div class="column is-three-fifths">
-                  <p>Surfer: Ralf, Astrid, Kalle</p>
-                </div>
-                <div class="column" style="text-align:right;">
-                  <a>Join Session...</a>
-                </div>
-              </div>
+              <div><strong><%= session.spot.name %></strong> <small>@ralf</small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time></small></div>
+              <p>Surfer: Ralf, Astrid, Kalle</p>
             </div>
+            <div><small><a href="#0">Join</a> &middot; <a href="https://www.windfinder.com/weatherforecast/heiligenhafen" target="_blank">Windfinder</a></small></div>
+          </div>
+          <div class="media-right">
+            <button class="delete"></button>
           </div>
         </article>
       <% end %>
