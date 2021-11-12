@@ -11,12 +11,12 @@
           <div class="media-content">
             <div class="content">
               <div><strong><%= session.spot.name %></strong> <small>@<%= session.user.name %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time></small></div>
-              <small>Joined by Astrid, Kalle</small>
+              <small>Joined by: <%= joined_by(session) %></small>
             </div>
             <div>
               <small>
-                <% if current_user %>
-                  <a href="#0">Join</a> &middot; 
+                <% if joinable?(session) %>
+                  <%= link_to 'Join', join_path(session) %> &middot; 
                 <% end %>
                 <a href="https://www.windfinder.com/weatherforecast/heiligenhafen" target="_blank">Windfinder</a>
               </small>

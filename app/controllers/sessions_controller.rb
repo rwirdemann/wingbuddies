@@ -14,6 +14,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def join
+    session = Session.find(params[:id])
+    session.users << current_user
+    redirect_to sessions_path
+  end
+
   private
     def session_params
       params.require(:session).permit(:spot_id, :day)
