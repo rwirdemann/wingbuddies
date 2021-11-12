@@ -22,9 +22,11 @@
               </small>
             </div>
           </div>
-          <% if current_user %>
+          <% if owner?(session) %>
             <div class="media-right">
-              <button class="delete"></button>
+              <%= link_to "Destroy", session_path(session),
+                  method: :delete,
+                  data: { confirm: "Sicher?" }, :class => 'delete' %>
             </div>
           <% end %>
         </article>
@@ -70,7 +72,7 @@
         <%= form_with model: @user do |form| %>
           <div class="field">
             <div class="control">
-              <%= form.text_field :name, :class => 'input', :placeholder => 'Dein Nickname', :autofocus => true%>
+              <%= form.text_field :name, :class => 'input', :placeholder => 'Dein Nickname', :autofocus => true, :required => true %>
             </div>
           </div>
           <div class="field">

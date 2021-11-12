@@ -1,6 +1,6 @@
 module SessionsHelper
   def owner?(session)
-    current_user and current_user != session.user and !session.users.include?(current_user)
+    current_user and current_user == session.user
   end
 
   def joinable?(session)
