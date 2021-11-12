@@ -25,6 +25,7 @@
       <% end %>
     </div>
     <div class="column is-one-third">
+      <h2 class="subtitle has-text-weight-bold">Neue Session</h2>
       <%= form_with model: @session do |form| %>
         <div class="field has-addons">
           <div class="control">
@@ -41,14 +42,14 @@
             <%= form.date_field :day, :class => 'input' %>
           </div>
         </div>
-        <div class="field has-addons">
+        <div class="field is-grouped">
           <div class="control is-expanded">
-            <div class="select is-fullwidth">
+            <div class="select">
               <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
             </div>
           </div>
           <div class="control">
-            <%= form.submit 'Go', :class => 'button is-primary' %>
+            <button type="button" class="button is-primary">Wing It!</button>
           </div>
         </div>
       <% end %>
