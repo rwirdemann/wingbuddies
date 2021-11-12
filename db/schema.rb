@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_142122) do
+ActiveRecord::Schema.define(version: 2021_11_12_151839) do
 
   create_table "sessions", force: :cascade do |t|
     t.date "day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "spot_id", null: false
-    t.string "username"
+    t.integer "user_id", null: false
     t.index ["spot_id"], name: "index_sessions_on_spot_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "spots", force: :cascade do |t|
@@ -34,4 +35,5 @@ ActiveRecord::Schema.define(version: 2021_11_12_142122) do
   end
 
   add_foreign_key "sessions", "spots"
+  add_foreign_key "sessions", "users"
 end
