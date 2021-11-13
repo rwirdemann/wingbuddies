@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :sessions
   get '/join/:id' => 'sessions#join', as: 'join'
 
+  resources :spots
+
   post 'users' => 'users#login'
   get 'logout' => 'users#logout'
 end
