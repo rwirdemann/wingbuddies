@@ -9,8 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  
-    <section class="hero is-primary">
+    <section class="hero is-small is-info">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">Wingbuddies.de</h1>
@@ -21,6 +20,22 @@
             sichtbare Sessions planen. 
           </h2>
         </div>
+      </div>
+      <div class="hero-foot">
+        <nav class="tabs is-centered">
+          <div class="container">
+            <ul>
+
+              <li><%= link_to "Sessions", sessions_path %></li>
+              <li><a>Sessions</a></li>
+              <li><a href="#0">Spots</a></li>
+              <li><a href="#0">Friends</a></li>
+              <% if current_user %>
+              <li><%= link_to "Logout", logout_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
       </div>
     </section>
     <section class="section has-background-light">
