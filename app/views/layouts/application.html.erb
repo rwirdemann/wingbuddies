@@ -27,11 +27,10 @@
             <ul>
 
               <li><%= link_to "Sessions", sessions_path %></li>
-              <li><a>Sessions</a></li>
               <li><a href="#0">Spots</a></li>
               <li><a href="#0">Friends</a></li>
               <% if current_user %>
-              <li><%= link_to "Logout", logout_path %></li>
+                <li><%= link_to "Logout", logout_path %></li>
               <% end %>
             </ul>
           </div>
