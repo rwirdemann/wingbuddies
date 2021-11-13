@@ -25,6 +25,6 @@ class SpotsController < ApplicationController
 
   private
     def spot_params
-      params.require(:spot).permit(:name)
+      params.require(:spot).permit(:name, :windfinder)
     end
 end

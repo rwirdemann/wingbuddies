@@ -18,7 +18,7 @@
                 <% if joinable?(session) %>
                   <%= link_to 'Join', join_path(session) %> &middot; 
                 <% end %>
-                <a href="https://www.windfinder.com/weatherforecast/heiligenhafen" target="_blank">Windfinder</a>
+                <a href="<%= session.spot.windfinder %>" target="_blank">Windfinder</a>
               </small>
             </div>
           </div>
