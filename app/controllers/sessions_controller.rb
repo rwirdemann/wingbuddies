@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
     @session.user = current_user
     if @session.save
-      redirect_to sessions_path
+      redirect_to '/sessions'
     end
   end
 
