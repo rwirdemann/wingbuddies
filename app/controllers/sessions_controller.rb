@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
     @session.user = current_user
     if @session.save
-      redirect_to '/sessions'
+      redirect_to sessions_path
     end
   end
 
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     session = Session.find(params[:id])
     session.users.clear
-    session.destroy
+    article.destroy
     
     redirect_to sessions_path
   end
