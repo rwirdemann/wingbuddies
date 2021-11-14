@@ -1,24 +1,29 @@
-# README
+# Wingbuddies.de
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Deployment
 
-Things you may want to cover:
+### Apache configuration
 
-* Ruby version
+```
+sudo vi /etc/apache2/sites-enabled/wingbuddies.conf
 
-* System dependencies
+<VirtualHost *:80>
+  ServerName http://wingbuddies.de
+  DocumentRoot /var/apps/clock/public
 
-* Configuration
+  <Location />
+    Require all granted
+  </Location>
 
-* Database creation
+  RewriteEngine on
+  RewriteRule ^/?$ /index.html
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+  RewriteRule ^/(.*)$ http://127.0.0.1:8080%{REQUEST_URI} [P,QSA,L]
+</VirtualHost>
+```
 
-* Database initialization
+### Start Puma locally
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+./restart.sh
+```
