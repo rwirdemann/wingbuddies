@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     session = Session.find(params[:id])
     session.users.clear
-    article.destroy
+    session.destroy
     
     redirect_to sessions_path
   end
