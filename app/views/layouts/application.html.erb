@@ -37,6 +37,14 @@
         </nav>
       </div>
     </section>
+    <% unless flash.empty? %>
+    <div class="notification is-warning mb-0">
+      <button class="delete"></button>
+      <% flash.each do |type, msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
+    <% end %>
     <section class="section has-background-light">
       <%= yield %>
     </section>

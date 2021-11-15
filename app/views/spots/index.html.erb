@@ -1,13 +1,28 @@
 <div class="container">
   <div class="columns">
     <div class="column">
-      <ul>
-        <% @spots.each do |s| %>
-          <li>
-            <%= link_to s.name, spot_path(s) %>
-          </li>
-        <% end %>
-      </ul>
+      <% @spots.each do |spot| %>
+        <article class="media">
+          <figure class="media-left">
+            <div class="image is-64x64">
+              <%= image_tag 'heiligenhafen-64x64.png' %>
+            </div>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <div>
+                <strong> <%= link_to spot.name, spot_path(spot) %></strong>
+              </div>
+              <small>Windfinder: <%= spot.windfinder %></small>
+            </div>
+          </div>
+          <div class="media-right">
+            <%= link_to "Destroy", spot_path(spot),
+                  method: :delete,
+                  data: { confirm: "Sicher?" }, :class => 'delete' %>
+          </div>
+        </article>
+      <% end %>
     </div>
     <div class="column is-one-third">
       <h2 class="subtitle has-text-weight-bold">Spot bearbeiten</h2>

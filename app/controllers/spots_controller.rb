@@ -23,6 +23,16 @@ class SpotsController < ApplicationController
     redirect_to spots_path
   end
 
+  def destroy
+    spot = Spot.find(params[:id])
+    if spot.sessions.empty?
+      spot.destroy     
+    else
+      flash[:notice] = "Kann nicht gelöscht werden, Spot in Verwendung."
+    end
+    redirect_to spots_path
+  end
+
   private
     def spot_params
       params.require(:spot).permit(:name, :windfinder)
