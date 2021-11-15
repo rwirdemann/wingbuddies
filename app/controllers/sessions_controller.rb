@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @session = Session.new(session_params)
+    @session = Session.new(session_params)    
+    if params[:spotname].present?
+      spot = Spot.create(:name => params[:spotname])
+      @session.spot = spot
+    end
     @session.user = current_user
     if @session.save
       redirect_to sessions_path

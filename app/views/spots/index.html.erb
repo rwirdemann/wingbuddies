@@ -3,7 +3,9 @@
     <div class="column">
       <ul>
         <% @spots.each do |s| %>
-          <li><%= link_to s.name, spot_path(s) %></li>
+          <li>
+            <%= link_to s.name, spot_path(s) %>
+          </li>
         <% end %>
       </ul>
     </div>
