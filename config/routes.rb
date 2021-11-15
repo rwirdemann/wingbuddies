@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :spots
 
+  resources :friendships
+
   post 'users' => 'users#login'
   get 'logout' => 'users#logout'
 end
