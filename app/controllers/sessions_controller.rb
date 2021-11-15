@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
       @session.spot = spot
     end
     @session.user = current_user
+    @session.visibility = params[:visibility]
+
     if @session.save
       redirect_to sessions_path
     end

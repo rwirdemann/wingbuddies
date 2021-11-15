@@ -25,12 +25,15 @@
         <nav class="tabs is-centered">
           <div class="container">
             <ul>
-              <li><%= link_to "Sessions", sessions_path %></li>
-              <li><%= link_to "Contact", sessions_path %></li>
               <% if current_user %>
+                <li><%= link_to "Sessions", sessions_path %></li>
                 <li><%= link_to "Spots", spots_path %></li>
                 <li><a href="#0">Friends</a></li>
+                <li><%= link_to "Contact", sessions_path %></li>
                 <li><%= link_to "Logout", logout_path %></li>
+              <% else %>
+                <li><%= link_to "Sessions", sessions_path %></li>
+                <li><%= link_to "Contact", sessions_path %></li>
               <% end %>
             </ul>
           </div>

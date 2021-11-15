@@ -10,7 +10,7 @@
           </figure>
           <div class="media-content">
             <div class="content">
-              <div><strong><%= session.spot.name %></strong> <small>@<%= session.user.name %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time></small></div>
+              <div><strong><%= session.spot.name %></strong> <small>@<%= session.user.name %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time> (<%= session.visibility %>)</small></div>
               <small>Joined by: <%= joined_by(session) %></small>
             </div>
             <div>
@@ -51,6 +51,22 @@
           <div class="field">
             <div class="control">
               <%= form.date_field :day, :class => 'input' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="radio">
+                <input type="radio" value="private" name="visibility" checked>
+                Privat
+              </label>
+              <label class="radio">
+                <input type="radio" value="friends" name="visibility">
+                Freunde
+              </label>
+              <label class="radio">
+                <input type="radio" value="public" name="visibility">
+                Öffentlich
+              </label>
             </div>
           </div>
           <div class="field is-grouped">
