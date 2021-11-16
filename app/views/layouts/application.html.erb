@@ -33,7 +33,7 @@
                 <li><%= link_to "Logout", logout_path %></li>
               <% else %>
                 <li><%= link_to "Sessions", sessions_path %></li>
-                <li><%= link_to "Contact", sessions_path %></li>
+                <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
               <% end %>
             </ul>
           </div>

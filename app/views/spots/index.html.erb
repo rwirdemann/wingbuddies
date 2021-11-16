@@ -13,7 +13,9 @@
               <div>
                 <strong> <%= link_to spot.name, spot_path(spot) %></strong>
               </div>
-              <small>Windfinder: <%= spot.windfinder %></small>
+              <% unless spot.windfinder.blank? %>
+                <small>Windfinder: <%= spot.windfinder %></small>
+              <% end %>
             </div>
           </div>
           <div class="media-right">
