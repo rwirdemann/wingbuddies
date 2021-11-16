@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "sessions#index"
   
   resources :sessions
-  get '/join/:id' => 'sessions#join', as: 'join'
+  post '/join/:id' => 'sessions#join', as: 'join'
 
   resources :spots
 
