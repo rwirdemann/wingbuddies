@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def index
-    @sessions = Session.order(:day)
+    @pagy, @sessions = pagy(Session.order(:day))
     @spots = Spot.order(:name)
     @session = Session.new(:day => Date.today)
     @user = User.new
