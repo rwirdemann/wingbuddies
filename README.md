@@ -1,6 +1,21 @@
 # Wingbuddies.de
 
-## Deployment
+## Production Deployment
+
+Wichtig: Server einmal in /development/ Environment starten. Sonst sind danach die assets leer.
+
+```
+bundle config set --local without 'development test'
+bundle install
+bundle exec rails assets:precompile
+bundle exec rake secret 
+```
+
+```
+# config/secrets.yml
+production:
+  secret_key_base: SECRET 
+```
 
 ### Apache configuration
 
