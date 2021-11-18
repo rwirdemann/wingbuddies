@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :friendships
   get 'contact' => 'contact#index'
+  get 'about' => 'contact#about'
+
 
   post 'users' => 'users#login'
   get 'logout' => 'users#logout'

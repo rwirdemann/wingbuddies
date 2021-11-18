@@ -9,6 +9,34 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <header>
+      <nav class="navbar is-info" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <div class="navbar-brand">
+            <a href="/" class="navbar-item">Wingbuddies.de</a>
+            <a role="button" class="navbar-burger" data-target="navbar" area-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
+          <div class="navbar-menu" id="navbar">
+            <div class="navbar-end">
+              <% if current_user %>
+                <%= link_to "Sessions", sessions_path, :class => 'navbar-item' %>
+                <%= link_to "Spots", spots_path, :class => active_menu('spots'), :class => 'navbar-item' %>
+                <%= link_to "Friends", friendships_path, :class => active_menu('friendships'), :class => 'navbar-item' %>
+                <%= link_to "Contact", contact_path, :class => active_menu('contact'), :class => 'navbar-item'%>
+                <%= link_to "Logout", logout_path, :class => 'navbar-item' %>
+              <% else %>
+                <%= link_to "About", about_path, :class => 'navbar-item' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--
     <section class="hero is-small is-info">
       <div class="hero-body">
         <div class="container">
@@ -40,13 +68,14 @@
         </nav>
       </div>
     </section>
+-->
     <% unless flash.empty? %>
-    <div class="notification is-warning mb-0">
-      <button class="delete"></button>
-      <% flash.each do |type, msg| %>
-        <%= msg %>
-      <% end %>
-    </div>
+      <div class="notification is-warning mb-0">
+        <button class="delete"></button>
+        <% flash.each do |type, msg| %>
+          <%= msg %>
+        <% end %>
+      </div>
     <% end %>
     <section class="section has-background-light">
       <%= yield %>
