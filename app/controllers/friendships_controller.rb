@@ -15,8 +15,12 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-    if @friendship.save
+    @friendship_current_user = current_user.friendships.build(:friend_id => params[:friend_id])
+
+    friend = User.find(params[:friend_id])
+    @friendship_new_friend = friend.friendships.build(:friend_id => current_user.id)
+
+    if @friendship_current_user.save and @friendship_new_friend .save
       redirect_to friendships_url
     else
       flash[:notice] = "Unable to add friend."
@@ -25,8 +29,11 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = current_user.friendships.find(params[:id])
-    @friendship.destroy
+    @friendship_current_user = current_user.friendships.find(params[:id])
+    @friendship_friend = Friendship.find_by(friend_id: current_user.id)
+    @friendship_current_user.destroy
+    @friendship_friend.destroy
+
     redirect_to friendships_url
   end
 end

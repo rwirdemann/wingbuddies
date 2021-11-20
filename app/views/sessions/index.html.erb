@@ -16,9 +16,12 @@
             <div>
               <small>
                 <% if joinable?(session) %>
-                  <%= link_to 'Join', join_path(session), method: :post %> &middot; 
+                  <%= link_to 'Join', join_path(session), method: :post %> 
                 <% end %>
                 <% unless session.spot.windfinder.blank? %>
+                  <% if joinable?(session) %>
+                    &middot; 
+                  <% end %>
                   <a href="<%= session.spot.windfinder %>" target="_blank">Windfinder</a>
                 <% end %>
               </small>
