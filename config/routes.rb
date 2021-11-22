@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   resources :sessions
   post '/join/:id' => 'sessions#join', as: 'join'
+  post '/unjoin/:id' => 'sessions#unjoin', as: 'unjoin'
 
   resources :spots
 

@@ -18,8 +18,13 @@
                 <% if joinable?(session) %>
                   <%= link_to 'Join', join_path(session), method: :post %> 
                 <% end %>
+                
+                <% if unjoinable?(session) %>
+                  <%= link_to 'Unjoin', unjoin_path(session), method: :post %> 
+                <% end %>
+                
                 <% unless session.spot.windfinder.blank? %>
-                  <% if joinable?(session) %>
+                  <% if joinable?(session) or unjoinable?(session) %>
                     &middot; 
                   <% end %>
                   <a href="<%= session.spot.windfinder %>" target="_blank">Windfinder</a>

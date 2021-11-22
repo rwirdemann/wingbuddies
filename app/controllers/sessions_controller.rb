@@ -35,6 +35,12 @@ class SessionsController < ApplicationController
     redirect_to sessions_path
   end
 
+  def unjoin
+    session = Session.find(params[:id])
+    session.users.delete(current_user)
+    redirect_to sessions_path
+  end
+
   def destroy
     session = Session.find(params[:id])
     session.users.clear

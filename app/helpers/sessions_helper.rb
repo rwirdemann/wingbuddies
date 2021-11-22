@@ -7,6 +7,10 @@ module SessionsHelper
     current_user and current_user != session.user and !session.users.include?(current_user)
   end
 
+  def unjoinable?(session)
+    current_user and current_user != session.user and session.users.include?(current_user)
+  end
+
   def joined_by(session)
     if session.users.count == 0
       "noch keiner"
