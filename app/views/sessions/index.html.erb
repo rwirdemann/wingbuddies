@@ -1,111 +1,78 @@
 <div class="container">
-  <div class="columns">
-    <div class="column">
-      <% @sessions.each do |session| %>
-        <article class="media">
-          <figure class="media-left">
-            <div class="image is-64x64">
-              <%= image_tag 'wingbuddies-white.png' %>
+  <div data-controller="infinite-scroll" data-action="scroll@window->infinite-scroll#scroll">
+    <div class="columns">
+      <div class="column">
+        <div data-infinite-scroll-target="entries">
+          <%= render "sessions" %>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <% if current_user %>
+          <h2 class="subtitle has-text-weight-bold">Neue Session</h2>
+          <%= form_with model: @session do |form| %>
+            <div class="field">
+              <div class="control">
+                <div class="select">
+                  <%= form.collection_select :spot_id, @spots, :id, :name %>
+                </div>
+              </div>
             </div>
-          </figure>
-          <div class="media-content">
-            <div class="content">
-              <div><strong><%= session.spot.name %></strong> <small>@<%= session.user.name %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time> (<%= session.visibility %>)</small></div>
-              <small>Joined by: <%= joined_by(session) %></small>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="spotname" class="input" placeholder="oder Spot neu anlegen">
+              </div>
             </div>
-            <div>
-              <small>
-                <% if joinable?(session) %>
-                  <%= link_to 'Join', join_path(session), method: :post %> 
-                <% end %>
-                
-                <% if unjoinable?(session) %>
-                  <%= link_to 'Unjoin', unjoin_path(session), method: :post %> 
-                <% end %>
-                
-                <% unless session.spot.windfinder.blank? %>
-                  <% if joinable?(session) or unjoinable?(session) %>
-                    &middot; 
-                  <% end %>
-                  <a href="<%= session.spot.windfinder %>" target="_blank">Windfinder</a>
-                <% end %>
-              </small>
+            <div class="field">
+              <div class="control">
+                <%= form.date_field :day, :class => 'input' %>
+              </div>
             </div>
-          </div>
-          <% if owner?(session) %>
-            <div class="media-right">
-              <%= link_to "Destroy", session_path(session),
-                  method: :delete,
-                  data: { confirm: "Sicher?" }, :class => 'delete' %>
+            <div class="field">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" value="private" name="visibility">
+                  Privat
+                </label>
+                <label class="radio">
+                  <input type="radio" value="friends" name="visibility">
+                  Freunde
+                </label>
+                <label class="radio">
+                  <input type="radio" value="public" name="visibility" checked>
+                  Öffentlich
+                </label>
+              </div>
+            </div>
+            <div class="field is-grouped">
+              <div class="control is-expanded">
+                <div class="select">
+                  <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
+                </div>
+              </div>
+              <div class="control">
+                <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+              </div>
             </div>
           <% end %>
-        </article>
-      <% end %>
+        <% else %>
+          <h2 class="subtitle has-text-weight-bold">Wie heißt Du?</h2>
+          <%= form_with model: @user do |form| %>
+            <div class="field">
+              <div class="control">
+                <%= form.text_field :name, :class => 'input', :placeholder => 'Dein Nickname', :autofocus => true, :required => true %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control buttons is-right">
+                <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <div class="column is-one-third">
-      <% if current_user %>
-        <h2 class="subtitle has-text-weight-bold">Neue Session</h2>
-        <%= form_with model: @session do |form| %>
-          <div class="field">
-            <div class="control">
-              <div class="select">
-                <%= form.collection_select :spot_id, @spots, :id, :name %>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <input type="text" name="spotname" class="input" placeholder="oder Spot neu anlegen">
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <%= form.date_field :day, :class => 'input' %>
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <label class="radio">
-                <input type="radio" value="private" name="visibility" checked>
-                Privat
-              </label>
-              <label class="radio">
-                <input type="radio" value="friends" name="visibility">
-                Freunde
-              </label>
-              <label class="radio">
-                <input type="radio" value="public" name="visibility">
-                Öffentlich
-              </label>
-            </div>
-          </div>
-          <div class="field is-grouped">
-            <div class="control is-expanded">
-              <div class="select">
-                <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
-              </div>
-            </div>
-            <div class="control">
-              <%= form.submit 'Wing It!', :class => 'button is-primary' %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <h2 class="subtitle has-text-weight-bold">Wie heißt Du?</h2>
-        <%= form_with model: @user do |form| %>
-          <div class="field">
-            <div class="control">
-              <%= form.text_field :name, :class => 'input', :placeholder => 'Dein Nickname', :autofocus => true, :required => true %>
-            </div>
-          </div>
-          <div class="field">
-            <div class="control buttons is-right">
-              <%= form.submit 'Wing It!', :class => 'button is-primary' %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+    <div data-infinite-scroll-target="pagination">
+      <%= pagy_bulma_nav(@pagy).html_safe %>
     </div>
   </div>
-  <%= pagy_bulma_nav(@pagy).html_safe %>
 </div>

@@ -1,0 +1,38 @@
+<% @sessions.each do |session| %>
+  <article class="media">
+    <figure class="media-left">
+      <div class="image is-64x64">
+        <%= image_tag 'wingbuddies-white.png' %>
+      </div>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <div><%= session.id %>: <strong><%= session.spot.name %></strong> <small>@<%= session.user.name %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time> (<%= session.visibility %>)</small></div>
+        <small>Joined by: <%= joined_by(session) %></small>
+      </div>
+      <div>
+        <small>
+          <% if joinable?(session) %>
+            <%= link_to 'Join', join_path(session), method: :post %>
+          <% end %>
+          <% if unjoinable?(session) %>
+            <%= link_to 'Unjoin', unjoin_path(session), method: :post %>
+          <% end %>
+          <% unless session.spot.windfinder.blank? %>
+            <% if joinable?(session) or unjoinable?(session) %>
+              &middot; 
+            <% end %>
+            <a href="<%= session.spot.windfinder %>" target="_blank">Windfinder</a>
+          <% end %>
+        </small>
+      </div>
+    </div>
+    <% if owner?(session) %>
+      <div class="media-right">
+        <%= link_to "Destroy", session_path(session),
+                  method: :delete,
+                  data: { confirm: "Sicher?" }, :class => 'delete' %>
+      </div>
+    <% end %>
+  </article>
+<% end %>
