@@ -55,6 +55,12 @@
             </div>
           <% end %>
         <% else %>
+          <div class="tabs">
+            <ul>
+              <li class="is-active"><a>Einloggen</a></li>
+              <li><a>Registrieren</a></li>
+            </ul>
+          </div>
           <h2 class="subtitle has-text-weight-bold">Wie heißt Du?</h2>
           <%= form_with model: @user do |form| %>
             <div class="field">

@@ -5,10 +5,11 @@
 Wichtig: Server einmal in /development/ Environment starten. Sonst sind danach die assets leer.
 
 ```
+config.hosts << "wingbuddies.de"
+bundle exec rake secret 
 bundle config set --local without 'development test'
 bundle install
-bundle exec rails assets:precompile
-bundle exec rake secret 
+RAILS_ENV=production bundle exec rails assets:precompile
 ```
 
 ```
