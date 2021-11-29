@@ -5,8 +5,10 @@ export default class extends Controller {
     static targets = ["entries", "pagination"]
 
     initialize() {
+        alert("hello")
         let options = {
-            rootMargin: '200px',
+            rootMargin: '0px',
+            threshold: 1.0
         }
 
         this.intersectionObserver = new IntersectionObserver(entries => this.processIntersectionEntries(entries), options)
@@ -14,6 +16,9 @@ export default class extends Controller {
 
     connect() {
         this.intersectionObserver.observe(this.paginationTarget)
+        console.log(this.paginationTarget)
+        console.log(document.body)
+
     }
 
     disconnect() {
@@ -21,11 +26,15 @@ export default class extends Controller {
     }
 
     processIntersectionEntries(entries) {
+        var intersectingCount = 0;
+        var count = 0;
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                intersectingCount += 1
                 this.loadMore()
             }
         })
+        console.log("Intersecting count: " + intersectingCount)
     }
 
     loadMore() {
