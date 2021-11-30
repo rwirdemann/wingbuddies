@@ -5,7 +5,6 @@ export default class extends Controller {
     static targets = ["entries", "pagination"]
 
     initialize() {
-        alert("hello")
         let options = {
             rootMargin: '0px',
             threshold: 1.0
