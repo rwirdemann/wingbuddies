@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def active_menu(controller)
-    if params[:controller] == controller 
+    if params[:controller] == controller
       return 'has-background-primary'
     end
     ""
