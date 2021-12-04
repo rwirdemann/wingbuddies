@@ -21,6 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
             $notification.parentNode.removeChild($notification);
         });
     });
+    
+
+    var loginLink = document.querySelector('#loginLink');
+    var registerLink = document.querySelector('#registerLink');
+    loginLink.addEventListener('click', () => {
+        loginLink.parentNode.classList.toggle("is-active")
+        registerLink.parentNode.classList.toggle("is-active")
+    });
+
+    registerLink.addEventListener('click', () => {
+        registerLink.parentNode.classList.toggle("is-active")
+        loginLink.parentNode.classList.toggle("is-active")
+    });
 });
 
 import 'controllers'

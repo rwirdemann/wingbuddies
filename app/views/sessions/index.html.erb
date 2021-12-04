@@ -57,8 +57,8 @@
         <% else %>
           <div class="tabs">
             <ul>
-              <li class="is-active"><a>Einloggen</a></li>
-              <li><a>Registrieren</a></li>
+              <li class="is-active"><a id="loginLink">Einloggen</a></li>
+              <li><a id="registerLink">Registrieren</a></li>
             </ul>
           </div>
           <%= form_with model: @user do |form| %>
