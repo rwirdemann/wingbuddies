@@ -17,7 +17,6 @@ export default class extends Controller {
         this.intersectionObserver.observe(this.paginationTarget)
         console.log(this.paginationTarget)
         console.log(document.body)
-
     }
 
     disconnect() {

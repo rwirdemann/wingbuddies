@@ -7,7 +7,11 @@
     </figure>
     <div class="media-content">
       <div class="content">
-        <div><%= session.id %>: <strong><%= session.spot.name %></strong> <small>@<%= session.user.name %></small> <small><time datetime="2018-03-15T14:35"><%= session.day.strftime("%A, %e.%m.%Y") %></time> (<%= session.visibility %>)</small></div>
+        <div><%= session.id %>: <strong><%= session.spot.name %></strong> 
+          <small>@<%= session.user.name %></small> 
+          <small><time datetime="2018-03-15T14:35">
+          <%= session.day.strftime("%A, %e.%m.%Y") %></time> (<%= session.visibility %>)</small>
+        </div>
         <small>Joined by: <%= joined_by(session) %></small>
       </div>
       <div>

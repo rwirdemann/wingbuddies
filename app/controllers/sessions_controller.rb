@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: {entries: render_to_string(partial: "sessions", formats: [:html]), pagination: view_context.pagy_bulma_nav(@pagy)}
+        render json: {entries: render_to_string(partial: "sessions", formats: [:html]), 
+                      pagination: view_context.pagy_bulma_nav(@pagy)}
       }
     end
   end
@@ -50,12 +51,12 @@ class SessionsController < ApplicationController
     session = Session.find(params[:id])
     session.users.clear
     session.destroy
-    
+
     redirect_to sessions_path
   end
 
   private
-    def session_params
-      params.require(:session).permit(:spot_id, :day)
-    end
+  def session_params
+    params.require(:session).permit(:spot_id, :day)
+  end
 end
