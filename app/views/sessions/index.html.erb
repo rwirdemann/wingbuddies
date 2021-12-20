@@ -46,7 +46,7 @@
             <div class="field is-grouped">
               <div class="control is-expanded">
                 <div class="select">
-                  <%= form.select :city, ["vormittags", "nachmittags", "abends"] %>
+                  <%= form.select :city, %w[vormittags nachmittags abends] %>
                 </div>
               </div>
               <div class="control">
@@ -81,20 +81,20 @@
             <% end %>
           </div>
           <div style="display:none" id="registerForm">
-            <%= form_with model: @user do |form| %>
+            <%= form_with model: @user, url: sign_up_path do |form| %>
               <div class="field">
                 <div class="control">
-                  <%= form.text_field :name, :class => 'input', :placeholder => 'Name', :autofocus => true, :required => true %>
+                  <%= form.text_field :name, :id => 'user_name_registration', :class => 'input', :placeholder => 'Name', :autofocus => true, :required => true %>
                 </div>
               </div>
               <div class="field">
                 <div class="control">
-                  <%= form.password_field :name, :class => 'input', :placeholder => 'Passwort', :autofocus => false, :required => true %>
+                  <%= form.password_field :password, :class => 'input', :placeholder => 'Passwort', :autofocus => false, :required => true %>
                 </div>
               </div>
               <div class="field">
                 <div class="control">
-                  <%= form.password_field :name, :class => 'input', :placeholder => 'Passwort wiederholen', :autofocus => false, :required => true %>
+                  <%= form.password_field :password_confirmation, :class => 'input', :placeholder => 'Passwort wiederholen', :autofocus => false, :required => true %>
                 </div>
               </div>
               <div class="field">

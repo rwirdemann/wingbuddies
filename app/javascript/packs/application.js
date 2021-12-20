@@ -24,11 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
-    var loginLink = document.querySelector("#loginLink");
-    var loginName = document.querySelector("#user_name");
-    var loginForm = document.querySelector("#loginForm");
-    var registerLink = document.querySelector("#registerLink");
-    var registerForm = document.querySelector("#registerForm");
+    let loginLink = document.querySelector("#loginLink");
+    let loginName = document.querySelector("#user_name");
+    let regitrationName = document.querySelector("#user_name_registration");
+    let loginForm = document.querySelector("#loginForm");
+    let registerLink = document.querySelector("#registerLink");
+    let registerForm = document.querySelector("#registerForm");
     loginLink.addEventListener("click", () => {
         loginLink.parentNode.classList.add("is-active");
         registerLink.parentNode.classList.remove("is-active");
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         registerLink.parentNode.classList.add("is-active");
         loginForm.style.display = "none";
         registerForm.style.display = "block";
+        regitrationName.focus();
     });
 });
 

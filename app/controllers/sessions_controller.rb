@@ -1,17 +1,8 @@
 class SessionsController < ApplicationController
   def index
     unless current_user.nil?
-      friends =
-        Friendship.where('user_id = ?', current_user.id).map { |f| f.friend_id }
-      sessions =
-        Session
-          .order(:day)
-          .where(
-            'visibility = ? OR user_id = ? OR user_id IN (?)',
-            'public',
-            current_user.id,
-            friends,
-          )
+      friends = Friendship.where('user_id = ?', current_user.id).map { |f| f.friend_id }
+      sessions = Session.order(:day).where('visibility = ? OR user_id = ? OR user_id IN (?)', 'public', current_user.id, friends)
     else
       sessions = Session.order(:day).where('visibility = ?', 'public')
     end
