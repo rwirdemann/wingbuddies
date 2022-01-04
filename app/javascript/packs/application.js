@@ -30,11 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let loginForm = document.querySelector("#loginForm");
     let registerLink = document.querySelector("#registerLink");
     let registerForm = document.querySelector("#registerForm");
+
     loginLink.addEventListener("click", () => {
         loginLink.parentNode.classList.add("is-active");
         registerLink.parentNode.classList.remove("is-active");
         loginForm.style.display = "block";
         registerForm.style.display = "none";
+        window.location.hash = "login";
         loginName.focus();
     });
 
@@ -43,8 +45,28 @@ document.addEventListener("DOMContentLoaded", () => {
         registerLink.parentNode.classList.add("is-active");
         loginForm.style.display = "none";
         registerForm.style.display = "block";
+        window.location.hash = "registration";
         regitrationName.focus();
     });
+
+    let hash = window.location.hash;
+    console.log("hash:" + hash)
+
+    if (hash === '#login' || !hash) {
+        console.log("login")
+        loginLink.parentNode.classList.add("is-active");
+        registerLink.parentNode.classList.remove("is-active");
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+        loginName.focus();
+    } else {
+        console.log("regitration")
+        loginLink.parentNode.classList.remove("is-active");
+        registerLink.parentNode.classList.add("is-active");
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+        regitrationName.focus();
+    }
 });
 
 import "controllers";

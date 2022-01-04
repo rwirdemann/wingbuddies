@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find_by(:name => user_params['name'])
     if @user.present? && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
-      redirect_to sessions_path, notice: 'Du bist jetzt eingelogged und kannst neue Sessions einstellen!'
+      redirect_to sessions_path
     else
       redirect_to sessions_path, notice: 'Das Passwort oder der Benutzername sind falsch!'
     end
