@@ -1,104 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Wingbuddies</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar is-info" role="navigation" aria-label="Main navigation">
+<head>
+  <title>Wingbuddies</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<header>
+  <nav class="navbar is-info is-hidden-tablet" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="navbar-item has-text-weight-semibold is-size-5">Wingbuddies.de</a>
+        <a role="button" class="navbar-burger" data-target="navbar" area-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navbar">
+        <div class="navbar-end">
+          <% if current_user %>
+            <%= link_to "Sessions", sessions_path, :class => 'navbar-item' %>
+            <%= link_to "Spots", spots_path, :class => active_menu('spots'), :class => 'navbar-item' %>
+            <%= link_to "Friends", friendships_path, :class => active_menu('friendships'), :class => 'navbar-item' %>
+            <%= link_to "Contact", contact_path, :class => active_menu('contact'), :class => 'navbar-item' %>
+            <%= link_to "Logout", logout_path, :class => 'navbar-item' %>
+          <% else %>
+            <%= link_to "About", about_path, :class => 'navbar-item' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="hero is-small is-info is-hidden-mobile">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Wingbuddies.de</h1>
+        <h2 class="subtitle">
+          Wingbuddies ist eine interaktive Plattform für Wingsurfer. Wingsurfer lernen
+          sich kennen, tauschen sich aus und verabreden gemeinsame Sessions. Mit
+          dem Sessionplaner kannst Du private, öffentliche oder nur Deinem Freundeskreis
+          sichtbare Sessions planen.
+        </h2>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <nav class="tabs is-centered">
         <div class="container">
-          <div class="navbar-brand">
-            <a href="/" class="navbar-item has-text-weight-semibold is-size-5">Wingbuddies.de</a>
-            <a role="button" class="navbar-burger" data-target="navbar" area-expanded="false">
-              <span></span>
-              <span></span>
-              <span></span>
-            </a>
-          </div>
-          <div class="navbar-menu" id="navbar">
-            <div class="navbar-end">
-              <% if current_user %>
-                <%= link_to "Sessions", sessions_path, :class => 'navbar-item' %>
-                <%= link_to "Spots", spots_path, :class => active_menu('spots'), :class => 'navbar-item' %>
-                <%= link_to "Friends", friendships_path, :class => active_menu('friendships'), :class => 'navbar-item' %>
-                <%= link_to "Contact", contact_path, :class => active_menu('contact'), :class => 'navbar-item'%>
-                <%= link_to "Logout", logout_path, :class => 'navbar-item' %>
-              <% else %>
-                <%= link_to "About", about_path, :class => 'navbar-item' %>
-              <% end %>
-            </div>
-          </div>
+          <ul>
+            <% if current_user %>
+              <li><%= link_to "Sessions", sessions_path, :class => active_menu('sessions') %></li>
+              <li><%= link_to "Spots", spots_path, :class => active_menu('spots') %></li>
+              <li><%= link_to "Friends", friendships_path, :class => active_menu('friendships') %></li>
+              <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
+              <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Sessions", sessions_path %></li>
+              <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
+            <% end %>
+          </ul>
         </div>
       </nav>
-    </header>
-    <!--
-    <section class="hero is-small is-info">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Wingbuddies.de</h1>
-          <h2 class="subtitle">
-            Wingbuddies ist eine interaktive Plattform für Wingsurfer. Wingsurfer lernen 
-            sich kennen, tauschen sich aus und verabreden gemeinsame Sessions. Mit 
-            dem Sessionplaner kannst Du private, öffentliche oder nur Deinem Freundeskreis 
-            sichtbare Sessions planen. 
-          </h2>
-        </div>
-      </div>
-      <div class="hero-foot">
-        <nav class="tabs is-centered">
-          <div class="container">
-            <ul>
-              <% if current_user %>
-                <li><%= link_to "Sessions", sessions_path, :class => active_menu('sessions') %></li>
-                <li><%= link_to "Spots", spots_path, :class => active_menu('spots') %></li>
-                <li><%= link_to "Friends", friendships_path, :class => active_menu('friendships') %></li>
-                <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
-                <li><%= link_to "Logout", logout_path %></li>
-              <% else %>
-                <li><%= link_to "Sessions", sessions_path %></li>
-                <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </section>
--->
-    <% unless flash.empty? %>
-      <div class="notification is-warning mb-0">
-        <button class="delete"></button>
-        <% flash.each do |type, msg| %>
-          <%= msg %>
-        <% end %>
-      </div>
+    </div>
+  </section>
+</header>
+<% unless flash.empty? %>
+  <div class="notification is-warning mb-0">
+    <button class="delete"></button>
+    <% flash.each do |type, msg| %>
+      <%= msg %>
     <% end %>
-    <section class="section has-background-light">
-      <%= yield %>
-    </section>
-    <footer class="footer">
-      <div class="container">
-        <ul class="level">
-          <li class="level-item">&copy; 2021 Ralf Wirdemann</li>
-          <li class="level-item">All rights reserved.</li>
-          <li class="level-item"><a href="#">Terms of use and privacy policy</a>.</li>
-        </ul>
-      </div>
-    </footer>
-  </body>
-  <script type="text/javascript">
-    (function() {
-      var burger = document.querySelector('.navbar-burger');
-      var menu = document.querySelector('#'+burger.dataset.target);
-      burger.addEventListener('click', function() {
-          burger.classList.toggle('is-active');
-          menu.classList.toggle('is-active');
-      });
+  </div>
+<% end %>
+<section class="section has-background-light">
+  <%= yield %>
+</section>
+<footer class="footer">
+  <div class="container">
+    <ul class="level">
+      <li class="level-item">&copy; 2021 Ralf Wirdemann</li>
+      <li class="level-item">All rights reserved.</li>
+      <li class="level-item"><a href="#">Terms of use and privacy policy</a>.</li>
+    </ul>
+  </div>
+</footer>
+</body>
+<script type="text/javascript">
+    (function () {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
     })();
-  </script>
+</script>
 </html>
