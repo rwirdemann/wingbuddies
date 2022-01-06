@@ -2,6 +2,10 @@ class RegistrationsController < ApplicationController
 
   def new
     @user = User.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

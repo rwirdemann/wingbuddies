@@ -1,0 +1,39 @@
+<% if @user.errors.any? %>
+  <article class="message is-danger">
+    <div class="message-header">
+      <p>Es ist was schief gelaufen</p>
+    </div>
+    <div class="message-body content">
+      <ul>
+        <% @user.errors.full_messages.each do |m| %>
+          <li><%= m %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </article>
+<% end %>
+<%= form_with model: @user, id: "modal-window", local: false, url: sign_up_path do |form| %>
+  <div class="field">
+    <label class="label">Dein Nickname</label>
+    <div class="control">
+      <%= form.text_field :name, :id => 'user_name_registration', :class => 'input', :placeholder => 'Name', :autofocus => true, :required => true %>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Passwort</label>
+    <div class="control">
+      <%= form.password_field :password, :class => 'input', :placeholder => 'Passwort', :autofocus => false, :required => true %>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Passwort wiederholen</label>
+    <div class="control">
+      <%= form.password_field :password_confirmation, :class => 'input', :placeholder => 'Passwort wiederholen', :autofocus => false, :required => true %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control buttons is-right">
+      <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+    </div>
+  </div>
+<% end %>
