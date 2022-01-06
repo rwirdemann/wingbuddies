@@ -12,7 +12,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to sessions_path, notice: 'Dein Account wurde erfolgreich erstellt!'
+      redirect_to sessions_path, notice: "Willkommen #{@user.name}. Dein Konto wurde erfolgreich erstellt. Du kannst jetzt Deine erste Session einstellen!"
     else
       render 'new'
     end

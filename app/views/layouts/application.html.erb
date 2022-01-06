@@ -69,11 +69,12 @@
   </section>
 </header>
 <% unless flash.empty? %>
-  <div class="notification is-warning mb-0">
-    <button class="delete"></button>
-    <% flash.each do |type, msg| %>
+  <% flash.each do |type, msg| %>
+    <div class="notification <%= flashcolor type %> mb-0">
+      <button class="delete"></button>
       <%= msg %>
-    <% end %>
+    </div>
+  <% end %>
   </div>
 <% end %>
 <section class="section has-background-light">
