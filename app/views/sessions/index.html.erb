@@ -81,7 +81,7 @@
       </div>
     </div>
     <div data-infinite-scroll-target="pagination">
-      <%= pagy_bulma_nav(@pagy).html_safe %>
+      <%= pagy_bulma_nav(@pagy).html_safe if @pagy.pages > 1 %>
     </div>
   </div>
 </div>

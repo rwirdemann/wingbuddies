@@ -18,4 +18,14 @@ module SessionsHelper
       session.users.map { |s| s.name }.join(', ')
     end
   end
+
+  def visibility(session)
+    if session.visibility == "public"
+      return "öffentlich"
+    end
+    if session.visibility == "friends"
+      return "freunde"
+    end
+    "privat"
+  end
 end

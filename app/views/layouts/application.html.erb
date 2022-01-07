@@ -26,9 +26,9 @@
           <% if current_user %>
             <%= link_to "Sessions", sessions_path, :class => 'navbar-item' %>
             <%= link_to "Spots", spots_path, :class => active_menu('spots'), :class => 'navbar-item' %>
-            <%= link_to "Friends", friendships_path, :class => active_menu('friendships'), :class => 'navbar-item' %>
-            <%= link_to "Contact", contact_path, :class => active_menu('contact'), :class => 'navbar-item' %>
-            <%= link_to "Logout", logout_path, :class => 'navbar-item' %>
+            <%= link_to "Freunde", friendships_path, :class => active_menu('friendships'), :class => 'navbar-item' %>
+            <%= link_to "Kontakt", contact_path, :class => active_menu('contact'), :class => 'navbar-item' %>
+            <%= link_to "Abmelden", logout_path, :class => 'navbar-item' %>
           <% else %>
             <%= link_to "About", about_path, :class => 'navbar-item' %>
           <% end %>
@@ -55,12 +55,12 @@
             <% if current_user %>
               <li><%= link_to "Sessions", sessions_path, :class => active_menu('sessions') %></li>
               <li><%= link_to "Spots", spots_path, :class => active_menu('spots') %></li>
-              <li><%= link_to "Friends", friendships_path, :class => active_menu('friendships') %></li>
-              <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
-              <li><%= link_to "Logout", logout_path %></li>
+              <li><%= link_to "Freunde", friendships_path, :class => active_menu('friendships') %></li>
+              <li><%= link_to "Kontakt", contact_path, :class => active_menu('contact') %></li>
+              <li><%= link_to "Abmelden", logout_path %></li>
             <% else %>
               <li><%= link_to "Sessions", sessions_path %></li>
-              <li><%= link_to "Contact", contact_path, :class => active_menu('contact') %></li>
+              <li><%= link_to "Kontakt", contact_path, :class => active_menu('contact') %></li>
             <% end %>
           </ul>
         </div>
@@ -83,7 +83,7 @@
 <footer class="footer">
   <div class="container">
     <ul class="level">
-      <li class="level-item">&copy; 2021 Ralf Wirdemann</li>
+      <li class="level-item">&copy; 2022 Ralf Wirdemann</li>
       <li class="level-item">All rights reserved.</li>
       <li class="level-item"><a href="#">Terms of use and privacy policy</a>.</li>
     </ul>
