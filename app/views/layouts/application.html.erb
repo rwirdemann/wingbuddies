@@ -53,10 +53,11 @@
         <div class="container">
           <ul>
             <% if current_user %>
-              <li><%= link_to "Sessions", sessions_path, :class => active_menu('sessions') %></li>
+              <li><%= link_to "Sessions", sessions_path, :class => active_menu('sessions', 'index') %></li>
               <li><%= link_to "Spots", spots_path, :class => active_menu('spots') %></li>
               <li><%= link_to "Freunde", friendships_path, :class => active_menu('friendships') %></li>
               <li><%= link_to "Kontakt", contact_path, :class => active_menu('contact') %></li>
+              <li><%= link_to "Meine Sessions", my_sessions_path, :class => active_menu('sessions', 'my') %></li>
               <li><%= link_to "Abmelden", logout_path %></li>
             <% else %>
               <li><%= link_to "Sessions", sessions_path %></li>

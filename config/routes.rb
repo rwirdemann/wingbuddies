@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   get 'logout' => 'users#logout'
 
   get 'sign_up', to: 'registrations#new'
+  get 'my_sessions', to: 'sessions#my'
   post 'sign_up', to: 'registrations#create'
 end

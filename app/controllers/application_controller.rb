@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:user_id])
   end
 
-  def active_menu(controller)
-    if params[:controller] == controller
+  def active_menu(controller, action = nil)
+    if params[:controller] == controller and (action.nil? or params[:action] == action)
       return 'has-background-primary'
     end
     ""
