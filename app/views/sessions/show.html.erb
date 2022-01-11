@@ -1,0 +1,8 @@
+<section class="container">
+  <h1 class="title is-4">
+    <%= @session.spot.name %>
+    @<%= @session.user.name %>
+    <%= l(@session.day, format: "%A, %e.%m.%Y") %></time> (<%= visibility(@session) %>)
+  </h1>
+  <%= link_to "Kommentieren..." %>
+</section>

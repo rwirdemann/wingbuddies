@@ -7,10 +7,9 @@
     </figure>
     <div class="media-content">
       <div class="content">
-        <div><%= session.id %>: <strong><%= session.spot.name %></strong> 
-          <small>@<%= session.user.name %></small> 
-          <small><time datetime="2018-03-15T14:35">
-          <%= l(session.day, format: "%A, %e.%m.%Y") %></time> (<%= visibility(session) %>)</small>
+        <div><strong><%= link_to session.spot.name, session_path(session) %></strong>
+          <small>@<%= session.user.name %></small>
+          <small><%= l(session.day, format: "%A, %e.%m.%Y") %></time> (<%= visibility(session) %>)</small>
         </div>
         <small>Dabei sind: <%= joined_by(session) %></small>
       </div>
@@ -24,7 +23,7 @@
           <% end %>
           <% unless session.spot.windfinder.blank? %>
             <% if joinable?(session) or unjoinable?(session) %>
-              &middot; 
+              &middot;
             <% end %>
             <a href="<%= session.spot.windfinder %>" target="_blank">Windfinder</a>
           <% end %>
@@ -34,8 +33,8 @@
     <% if owner?(session) %>
       <div class="media-right">
         <%= link_to "Destroy", session_path(session),
-                  method: :delete,
-                  data: { confirm: "Sicher?" }, :class => 'delete' %>
+                    method: :delete,
+                    data: { confirm: "Sicher?" }, :class => 'delete' %>
       </div>
     <% end %>
   </article>

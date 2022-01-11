@@ -59,6 +59,10 @@ class SessionsController < ApplicationController
     redirect_to sessions_path
   end
 
+  def show
+    @session = Session.find(params[:id])
+  end
+
   private
 
   def session_params
