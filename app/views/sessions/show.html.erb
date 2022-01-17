@@ -1,8 +1,39 @@
-<section class="container">
-  <h1 class="title is-4">
-    <%= @session.spot.name %>
-    @<%= @session.user.name %>
-    <%= l(@session.day, format: "%A, %e.%m.%Y") %></time> (<%= visibility(@session) %>)
-  </h1>
-  <%= link_to "Kommentieren..." %>
-</section>
+<div class="container">
+  <div class="columns">
+    <div class="column">
+      <h1 class="title is-4">
+        <%= @session.spot.name %>
+        @<%= @session.user.name %>
+        <%= l(@session.day, format: "%A, %e.%m.%Y") %></time> (<%= visibility(@session) %>)
+      </h1>
+      <% @session.comments.each do |comment| %>
+        <div class="card mb-1">
+          <div class="card-content">
+            <div class="content">
+              <div class="has-text-weight-bold"><%= l(comment.created_at, format: "%A, %e.%m.%Y, %H:%M:%S") %></div>
+              <%= comment.body %>
+              <div class="mt-2">
+                <%= link_to "Löschen", session_comment_path(comment.session, comment),
+                            method: :delete,
+                            data: { confirm: "Sicher?" }, :class => 'delete' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="column is-one-third">
+      <h2 class="subtitle has-text-weight-bold">Neuer Kommentar</h2>
+      <%= form_with model: [@session, @session.comments.build] do |form| %>
+        <div class="field">
+          <div class="control">
+            <%= form.text_area :body, :class => 'input' %>
+          </div>
+        </div>
+        <div class="control">
+          <%= form.submit 'Wing It!', :class => 'button is-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

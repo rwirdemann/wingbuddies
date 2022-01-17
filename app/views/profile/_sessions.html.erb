@@ -1,0 +1,25 @@
+<% @sessions.each do |session| %>
+  <article class="media">
+    <figure class="media-left">
+      <div class="image is-64x64">
+        <%= image_tag 'wingbuddies-white.png' %>
+      </div>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <div><strong><%= link_to session.spot.name, session_path(session) %></strong>
+          <small>@<%= session.user.name %></small>
+          <small><%= l(session.day, format: "%A, %e.%m.%Y") %></time> (<%= visibility(session) %>)</small>
+        </div>
+        <small>Dabei sind: <%= joined_by(session) %></small>
+      </div>
+    </div>
+    <% if owner?(session) %>
+      <div class="media-right">
+        <%= link_to "Destroy", session_path(session),
+                    method: :delete,
+                    data: { confirm: "Sicher?" }, :class => 'delete' %>
+      </div>
+    <% end %>
+  </article>
+<% end %>

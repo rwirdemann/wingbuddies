@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root "sessions#index"
   
-  resources :sessions
+  resources :sessions do
+    resources :comments
+  end
   post '/join/:id' => 'sessions#join', as: 'join'
   post '/unjoin/:id' => 'sessions#unjoin', as: 'unjoin'
 
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   get 'logout' => 'users#logout'
 
   get 'sign_up', to: 'registrations#new'
-  get 'my_sessions', to: 'sessions#my'
+  get 'profile', to: 'profile#index'
+  get 'my_sessions', to: 'profile#my_sessions'
   post 'sign_up', to: 'registrations#create'
 end

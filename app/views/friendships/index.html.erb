@@ -1,7 +1,7 @@
 <div class="container">
   <div class="columns">
     <div class="column">
-      <h2 class="subtitle has-text-weight-bold">My Friends (<%= current_user.name %>)</h2>
+      <h2 class="title is-5">My Friends (<%= current_user.name %>)</h2>
       <% for friendship in current_user.friendships %>
           <strong><%= friendship.friend.name %></strong>
            <%= link_to "remove", friendship, :method => :delete %>
@@ -10,7 +10,7 @@
 
     </div>
     <div class="column is-one-third">
-          <h2 class="subtitle has-text-weight-bold">Add new Friends</h2>
+          <h2 class="title is-5">Add new Friends</h2>
       <% for user in @users %>
         <p>
           <strong><%=h user.name %></strong>

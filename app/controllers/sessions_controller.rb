@@ -23,10 +23,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def my
-    @sessions = Session.order(:day).where('user_id = ?', current_user.id)
-  end
-
   def create
     @session = Session.new(session_params)
     if params[:spotname].present?
